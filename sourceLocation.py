@@ -41,11 +41,7 @@ def mapPlume(s_x, s_y, windspeed, windDir, n, m):
     plumeMap = np.zeros((m, n))
     for i,v in enumerate([x / 10.0 for x in range(5, n*10, 10)]):
         for j,k in enumerate([x / 10.0 for x in range(5, m*10, 10)]):
-            print(str(s_y) + " " + str(v) + " " + str(k))
-            print(str(plume(s_x, s_y, v, k, windspeed, windDir)))
             plumeMap[j, i] = plume(s_x, s_y, v, k, windspeed, windDir)
-            print(str(v))
-            print(str(i) + ", " + str(j) + " = " + str(plumeMap[j,i]))
     plt.rcParams["figure.figsize"] = [7.00, 3.50]
     data = plumeMap
     plt.imshow(data, cmap=colorgrad)
@@ -53,6 +49,10 @@ def mapPlume(s_x, s_y, windspeed, windDir, n, m):
     plt.savefig(os.path.dirname(os.path.realpath(__file__)) + '\\img\\' + str(s_x) + "_" + str(s_y) + "_" + str(windDir) + ".png")
     plt.show()
 
+SOURCE_X = 25.7
+SOURCE_Y = 32.1
+WIND_DIRECTION = 246.93207131333335
+GRANULARITY = 200
 
 if __name__ == "__main__":
-    mapPlume(25.7, 32.1, 1, 246.93207131333335, 200, 100)
+    mapPlume(SOURCE_X, SOURCE_Y, 1, WIND_DIRECTION, GRANULARITY, GRANULARITY/2)

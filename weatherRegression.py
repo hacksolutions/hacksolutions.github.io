@@ -109,10 +109,7 @@ def normalize(X):
 def writeLeakDetections(y_labels, y_actual, y_prediction, range):
     rangeDict = {}
     for l in y_labels:
-        print(y_prediction[0])
-        print(y_actual[l])
         errorFrame = y_prediction[0].sub(y_actual[l]).abs()
-        print(errorFrame)
         ranges = getErrorRanges(errorFrame, range)
         outFrame = pd.DataFrame(columns=["actual", "predicted", "upper"])
         outFrame["predicted"] = y_prediction[0]
@@ -120,7 +117,6 @@ def writeLeakDetections(y_labels, y_actual, y_prediction, range):
         outFrame["upper"] = y_prediction[0] + range
         #outFrame.to_csv("//csv//" + (l.split('_')[0] + (l.split('_'))[1] + l.split('_')[2])+"_graph.csv")
         rangeDict[l.split('_')[0] + (l.split('_'))[1] + l.split('_')[2]] = ranges
-    print(json.dumps(rangeDict))
     with open(os.path.dirname(os.path.realpath(__file__)) + "\\json\\leakTimes.json", 'w') as f:
         json.dump(rangeDict, f)
         
@@ -145,6 +141,8 @@ if __name__ == "__main__":
     c_reader = csv.reader(concentration, delimiter=',')
     l_reader = csv.reader(leaks, delimiter=',')
 
+    print("Cleaning up your data :)\n")
+
     weatherFrame = pd.read_csv("weather_data.csv", sep = ',', header=0)
     weatherFrame['timestamp'] = weatherFrame['timestamp'].apply(getEpoch)
 
@@ -156,45 +154,27 @@ if __name__ == "__main__":
 
     cleanIntervals  = findCleanData(l_reader, sensorSize)
 
-    
-
     cleanIntervalsAdj = (int(cleanIntervals[1][0] / 60) ,int(cleanIntervals[1][1] / 60))
 
-    print(cleanIntervalsAdj)
+    print("Downsampling to the minute\n")
 
     averagedWeatherFrame = poolByMinute(weatherFrame, x_params, "timestamp")
     averagedFullFrame = poolByMinute(fullFrame, y_params, "timestamp")
 
-    print(weatherFrame['timestamp'].diff().max())
-    print(fullFrame['timestamp'].diff().max())
-    print(averagedWeatherFrame)
-    print(averagedFullFrame)
-
     diffWeatherFrame = buildDeltaFrame(averagedWeatherFrame, x_params_trimmed)
     diffSensorsFrame = buildDeltaFrame(averagedFullFrame, y_params)
     diffFullFrame = buildDeltaFrameY(averagedFullFrame, y_params)
-
-    print("Post Delta --------------------------------")
-    print(diffWeatherFrame)
-    print(diffSensorsFrame)
-    print(diffFullFrame)
 
     predModel = buildRegression(diffWeatherFrame[x_params_trimmed].loc[(cleanIntervalsAdj[0]):(cleanIntervalsAdj[1])], diffFullFrame["Concentration"].loc[(cleanIntervalsAdj[0]):(cleanIntervalsAdj[1])])
 
     predicted = pd.DataFrame(predModel.predict(diffWeatherFrame[1:]))
     actual = diffFullFrame[1:]
 
-    print(predicted)
-    print(actual)
-
     stdev = (predicted[0].loc[cleanIntervalsAdj[0]: cleanIntervalsAdj[1]].sub(actual["Concentration"]).loc[cleanIntervalsAdj[0]:cleanIntervalsAdj[1]]).std()
-
-    print(stdev)
 
     writeLeakDetections(fullFrame.columns.values[2:], diffSensorsFrame, predicted, stdev*20)
 
-    print(averagedWeatherFrame.loc[444, "Wind_Directior"])
-
+    print("Data is ready! Error ranges are in /json/ and csv for error graphing is in /csv/ :D\n")
 
 
 

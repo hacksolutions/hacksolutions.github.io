@@ -1,12 +1,326 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<br>
+<br>
+<FONT COLOR="White">
+<div class="div2">
+<img src="https://cdn.discordapp.com/attachments/1073272485522460796/1170713150123950120/eogLogo.png?ex=655a0a95&is=65479595&hm=91630e9bf10113fea6e6135765f44c16631dd1e06a12e5aa0a341bd71ba348df&" alt="alternatetext"
+width=25%
+height=25%
+>
+</div>
 <head>
-    <meta charset="UTF-8">
-    <title>Step 3-b</title>
+<video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg"><source src="BIRD.mp4" type="video/mp4"
+width=100%
+height=auto></video>
+
+<title>EOG Leak Detection Tool</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+
+
+
+		.div2{
+        	padding:3px;
+        }
+        .graph-container {
+            width: 1184px;
+            height: 615px;
+            border: 1px solid #FFF;
+            position: relative;
+            background-image: url("https://cdn.discordapp.com/attachments/1073272485522460796/1170700838679871498/image.png?ex=6559ff1e&is=65478a1e&hm=0f634c09645b20b12aa3cbed9a597dbb7c0f0dc161975941e8f0cffda6d86f18&");
+        }
+
+        #graph {
+            width: 100%;
+            height: 100%;
+        }
+
+        .point {
+            width: 10px;
+            height: 10px;
+            background-color: #FF5733;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        button#plot-button {
+            margin-top: 10px;
+        }
+        #grad {
+  			background-image: linear-gradient(black, #5A5A5A);
+		}
+
+
+	#background-video {  width: 100vw;  height: 100vh;  object-fit: cover;  position: fixed;  left: 0;  right: 0;  top: 0;  bottom: 0;  z-index: -1;}
+
+
+	
+    
+</style>
 </head>
-<body>
-    <div id="chartDiv" style="width:50%; height:300px; margin:0 auto;"></div>
+<body id="grad">
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-large w3-light-grey">
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block">Home</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#plans" class="w3-button w3-block">Map</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#chart" class="w3-button w3-block">Chart</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#report" class="w3-button w3-block">Report</a>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+
+  <div class="w3-panel">
+    <h1><b>EOG Leak Detection Tool</b></h1>
+    <p>ch4 us | conserving habitats, for us.</p>
+    
+  </div>
+
+  
+  <!-- Grid -->
+  <div class="w3-row w3-container">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">about ch4 us</span>
+    </div>
+    <div class="w3-col l3 m6 w3-light-grey w3-container w3-padding-16">
+      <h3>Purpose</h3>
+      <p>ch4 us is a dynamic web tool that uses cutting-edge statistical analysis to accurately predict leakage zones within eog facilities, reducing the risk of accidental methane emissions. 
+                                                                                           
+      </p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-grey w3-container w3-padding-16">
+      <h3>Usage</h3>
+      <p>The map allows users to visualize potential leakage points, the chart shows the status of each individual sensor, and the reporting feature allows the user to identify faulty equipment.</p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-dark-grey w3-container w3-padding-16">
+      <h3>Accuracy</h3>
+      <p>This model uses Gaussian Physics in order to accurately predict the dispersion of Methane gas given wind speed. It utilizes this calculation to trace the likely source of the gas leak. </p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-black w3-container w3-padding-16">
+      <h3>Mission</h3>
+      <p>We are committed to reducing our atmospheric emissions and creating a safe and transparent workplace for all of our employees. We strive to continuously improve our model and display up-to-date information. </p>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="w3-row-padding" id="plans">
+    <div class="w3-center w3-padding-64">
+      <h3>Sensor Map</h3>
+      <p>Highlights sensors detecting methane leakages.</p>
+    </div>
+<!--
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-center w3-hover-shadow">
+        <li class="w3-black w3-xlarge w3-padding-32">Basic</li>
+        <li class="w3-padding-16"><b>10GB</b> Storage</li>
+        <li class="w3-padding-16"><b>10</b> Emails</li>
+        <li class="w3-padding-16"><b>10</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">$ 10</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-green w3-padding-large">Sign Up</button>
+        </li>
+      </ul>
+    </div>
+<!--
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-center w3-hover-shadow">
+        <li class="w3-dark-grey w3-xlarge w3-padding-32">Pro</li>
+        <li class="w3-padding-16"><b>25GB</b> Storage</li>
+        <li class="w3-padding-16"><b>25</b> Emails</li>
+        <li class="w3-padding-16"><b>25</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">$ 25</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-green w3-padding-large">Sign Up</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third w3-margin-bottom">
+      <ul class="w3-ul w3-border w3-center w3-hover-shadow">
+        <li class="w3-black w3-xlarge w3-padding-32">Premium</li>
+        <li class="w3-padding-16"><b>50GB</b> Storage</li>
+        <li class="w3-padding-16"><b>50</b> Emails</li>
+        <li class="w3-padding-16"><b>50</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">$ 50</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-green w3-padding-large">Sign Up</button>
+        </li>
+      </ul>
+    </div>--> 
+  </div>
+ <!-- Grid -->
+  <div class="w3-row-padding w3-center" id="chart">
+    <h3>Data Chart</h3>
+     <img src="https://cdn.discordapp.com/attachments/1169533195230904370/1170765254276427786/Screenshot_2023-11-05_at_10.42.40_AM.png?ex=655a3b1c&is=6547c61c&hm=f8ccb24e7b865febd368e8d97977470db380793c2d26a240562b5e687793503f&" alt="alternatetext"
+width=90%
+height=auto
+>
+  </div>
+
+  <!-- Contact -->
+  <div class="w3-center w3-padding-64" id="report" >
+<h3>Report an Anomaly</h3>
+<div class="graph-container w3-center">
+        <div id="graph"></div>
+    </div>
+    <button id="plot-button">Report Area</button>
+    <input type="number" id="x-coordinate" placeholder="X Coordinate: 0-1184">
+    <input type="number" id="y-coordinate" placeholder="Y Coordinate: 0-615">
+
+    <script>
+
+        const graph = document.getElementById("graph");
+       const plotButton = document.getElementById("plot-button");
+        const xCoordinateInput = document.getElementById("x-coordinate");
+        const yCoordinateInput = document.getElementById("y-coordinate");
+
+        const plottedPoints = [];
+
+        function drawPoints() {
+            graph.innerHTML = "";
+
+            plottedPoints.forEach(point => {
+                const pointDiv = document.createElement("div");
+                pointDiv.classList.add("point");
+                pointDiv.style.left = point.x + "px";
+                pointDiv.style.bottom = point.y + "px";
+                graph.appendChild(pointDiv);
+            });
+        }
+
+        plotButton.addEventListener("click", () => {
+            const x = parseFloat(xCoordinateInput.value);
+            const y = parseFloat(yCoordinateInput.value);
+
+            if (!isNaN(x) && !isNaN(y)) {
+                plottedPoints.push({ x, y });
+                drawPoints();
+                xCoordinateInput.value = "";
+                yCoordinateInput.value = "";
+            }
+        });
+
+        function init() {
+            drawPoints();
+        }
+
+        init();
+    </script>
+<div style:color:"black">
+<p >location &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	coordinate</p>
+<p >4S-43 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(241, 180)</p>
+<p >4S-42 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(225, 210)</p>
+<p >4S-14 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(255, 210)</p>
+<p >4S-12 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(270, 180)</p>
+<p >4S-21 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(302, 210)</p>
+<p >4S-43 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(241, 180)</p>
+<p></p>
+<p >4W-54 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(240, 420)</p>
+<p >4W-51 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(240, 420)</p>
+<p >4W-26 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(350, 410)</p>
+<p >4W-22 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(320, 410)</p>
+<p></p>
+<p >4T-12 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(520, 300)</p>
+<p >4T-11 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(550, 290)</p>
+<p >4T-31 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(550, 320)</p>
+<p >4T-22 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(570, 315)</p>
+<p></p>
+<p >5S-32 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(800, 400)</p>
+<p >5S-36 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(810, 390)</p>
+<p >5S-35 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(815, 410)</p>
+<p >5S-12 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(870, 400)</p>
+<p></p>
+<p >5W-33 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(870, 230)</p>
+<p >5W-23 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(870, 200)</p>
+<p >5W-13 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(870, 170)</p>
+<p >5W-18 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	(800, 170)</p>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+  <h4>ch4 us | eog resources</h4>
+  <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  
+  <p>Powered by caffeine and anxiety</p>
+</footer>
+
+
+<script>
+// Slideshow
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demodots");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-white";
+}
+</script>
+
 </body>
-<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
-<script src="js/index.js"></script>
 </html>

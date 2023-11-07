@@ -1,0 +1,20 @@
+Inspiration
+We were inspired by the recent trend towards creating more environmentally sustainable business practices. Although technology is progressing, our environment is slowly deteriorating. It is becoming more and more essential to find a harmony between technology and sustainability, and we want to be part of the solution!
+
+What it does
+Our product, ch4 us, does many things. We are able to show a chart that showcases the change in methane concentration for a given sensor throughout the day. It shows predicted values, actual values, and an acceptable range for the values to be in. Anything out of this range is considered a critical value. Additionally, we have a map that demonstrates the dispersion of the methane gas, given wind speed. This allows us to identify which sensors fall in this range and what the concentration should be if there is a leakage. Finally, we have a reporting feature that lets employees pinpoint areas of concern. This is accessible to other employees and allows for there to be a clear visual of potential hazards.
+
+How we built it
+We built our solution through hard work, persistence, and learning. We were able to build the chart by using Javascript and the JS charting framework. We took in a CSV file, filled it with the expected and actual values, and coded an algorithm to plot them on the chart. We also used standard deviation to calculate the acceptable range of methane concentration. For reporting, we provided the user with a key that matched the location of the equipment to a point on the map. The user is then able to plot this point themselves and see it appear on the map in real-time. The user can plot as many points as desired. Finally, we used the Gaussian Plume Model to display the concentration of methane after being dispersed a certain distance. We used linear regression to find the expected change in sensor readings given the change in weather conditions. We modeled our data on a map.
+
+Challenges we ran into
+We struggled with modeling the Gaussian Plume model. None of us are Mechanical Engineering majors, so we had to spend time learning how the model worked. Also, none of us had worked with JavaScript, only one had worked with HTML, and only one had worked with Python. So for all of us, coding this solution involved learning at least one new language.
+
+Accomplishments that we're proud of
+We are extremely proud of our finished product. We got the Gaussian Plume model to work, we were able to display our chart using the data found via analytics, and our website is also interactive!
+
+What we learned
+For starters, we all learned how a Gaussian Plume Model works. We were also able to learn different data visualization tools and how to do web development. Not only that, we gained valuable experience in thinking under pressure and working quickly.
+
+What's next for ch4 us
+We have many plans that we would love to implement in the future! For the chart, we want to add a drop-down table to switch between all the sensors. Moreover, for the map, we would like to dynamically update the dispersion trail. For reporting, we would like to have the user just enter the location (not the coordinate) and have it plot the point. We have many exciting plans for the future, and we can't wait to see what's next!
